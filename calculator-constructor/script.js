@@ -2,26 +2,26 @@
 
 function Calculator(base) {
     this.base = base;
-
-    this.add = function (val) {
-        return (this.base += val);
-    };
-    this.sub = function (val) {
-        return (this.base -= val);
-    };
-    this.mult = function (val) {
-        return (this.base *= val);
-    };
-    this.div = function (val) {
-        return (this.base /= val);
-    };
-    this.set = function (val) {
-        this.base = val;
-    };
-    this.get = function () {
-        return this.base;
-    };
 }
+
+Calculator.prototype.add = function (val) {
+    return (this.base += val);
+};
+Calculator.prototype.sub = function (val) {
+    return (this.base -= val);
+};
+Calculator.prototype.mult = function (val) {
+    return (this.base *= val);
+};
+Calculator.prototype.div = function (val) {
+    return (this.base /= val);
+};
+Calculator.prototype.set = function (val) {
+    this.base = val;
+};
+Calculator.prototype.get = function () {
+    return this.base;
+};
 
 const calc = new Calculator(10);
 

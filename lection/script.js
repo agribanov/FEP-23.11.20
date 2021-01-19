@@ -1,37 +1,114 @@
 'use strict';
 
-// Обьектно Ооринтированное Програмирование
-// var person = {
-//     name: 'alex',
-//     sayHi: function () {
-//         console.log(this);
-//     },
+// Person.GENDER_MALE = 'male';
+// Person.GENDER_FEMALE = 'female';
+
+// Person.validate = function () {};
+
+// function Person(name, surname) {
+//     this._name = name;
+//     this._surname = surname;
+// }
+
+// Person.prototype.sayHi = function () {
+//     console.log(this._name + ' ' + this._surname);
 // };
 
-// person.sayHi();
+// Person.prototype.getFullName = function () {
+//     return this._name + ' ' + this._surname;
+// };
 
-// var a = person.sayHi;
+// Person.prototype.setFullName = function (fullName) {
+//     const [name, surname] = fullName.split(' '); // ['']
 
-// a();
+//     this._name = name;
+//     this._surname = surname;
+//     // return this._name + ' ' + this._surname;
+// };
 
-function Counter() {
-    this.counts = 0;
+// const adam = new Person('Adam', 'Smith');
+// const eva = { name: 'eva' };
 
-    this.tick = function () {
-        this.counts++;
-    };
-}
+// function sayHi(greeting, age) {
+//     console.log(greeting + ', ' + this.name + age);
+//     return greeting + ', ' + this.name;
+// }
 
-const myCounter = new Counter();
+// sayHi('привет');
+// adam.sayHi = sayHi;
 
-// const calc = new Calculator(10);
+// const response = sayHi.call(adam, 'привет');
+// const response = sayHi.apply(adam, ['привет', 22]);
 
-// calc.add(5); // 15
-// calc.add(5); // 20
-// calc.mult(3); // 60
+// const bindedToAdam = sayHi.bind(adam, 'Привет', 33);
+// const bindedToEva = sayHi.bind(eva);
 
-// calc.set(100);
-// calc.add(5); // 105
-// calc.get();
+// ООП
 
-// calc.base; // 105
+// 1) Наследование
+// 2) Полиморфизм
+// 3) Инкапсуляция
+
+// function Animal() {}
+
+// Animal.prototype.run = function () {
+//     console.log('I am running fast');
+// };
+
+// function Dog(name) {
+//     this.name = name;
+// }
+
+// Dog.prototype = new Animal(); //{}
+
+// Dog.prototype.bark = function () {
+//     console.log('BARK!!');
+// };
+
+// Dog.prototype.run = function () {
+//     console.log('run like a dog');
+// };
+
+// function Cat() {}
+
+// Cat.prototype = new Animal();
+
+// const bob = new Dog('Bob');
+// const kitty = new Cat();
+
+// большой/средний/маленький
+
+// const SIZE_BIG = {
+//     price: 50,
+//     callories: 200
+// }
+
+// {
+//     price: 30,
+//     callories: 100
+// }
+
+// {
+//     price: 20,
+//     callories: 75
+// }
+
+// const TOPPING_MAYO = {
+//     price: 40,
+//     callories: 200
+// }
+
+// const burger = new Hamburger(SIZE_BIG)
+// const burger2 = new Hamburger(SIZE_BIG)
+// const burger4 = new Hamburger(SIZE_BIG)
+
+// burger.addToping(TOPPING_MAYO);
+// burger.addToping(TOPPING_MAYO);
+// burger.addToping(TOPPING_MAYO);
+// burger.addToping(TOPPING_KETCHUP);
+// burger.addToping(TOPPING_KETCHUP);
+// burger.addToping(TOPPING_KETCHUP);
+// burger.addToping(TOPPING_KETCHUP);
+
+// burger.getPrice() // 250
+// burger.getCallories() // 1050
