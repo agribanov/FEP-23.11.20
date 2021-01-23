@@ -1,114 +1,91 @@
-'use strict';
+class AnimalClass {
+    SIZE_BIG = {
+        price: 35,
+    };
 
-// Person.GENDER_MALE = 'male';
-// Person.GENDER_FEMALE = 'female';
+    constructor(name, surname) {
+        this.#name = name;
+        this.#surname = surname;
+    }
 
-// Person.validate = function () {};
+    get fullName() {
+        return this.#name + ' ' + this.#surname;
+    }
 
-// function Person(name, surname) {
-//     this._name = name;
-//     this._surname = surname;
-// }
+    set fullName(value) {
+        const [name, surname] = value.split(' ');
+        if (name && surname) {
+            this.#name = name;
+            this.#surname = surname;
+        }
+    }
 
-// Person.prototype.sayHi = function () {
-//     console.log(this._name + ' ' + this._surname);
-// };
+    run(speed) {
+        console.log(this.name, ' is running');
+    }
+}
 
-// Person.prototype.getFullName = function () {
-//     return this._name + ' ' + this._surname;
-// };
+class DogClass extends AnimalClass {
+    constructor(name) {
+        super(name);
+        this.size = 'small';
+    }
 
-// Person.prototype.setFullName = function (fullName) {
-//     const [name, surname] = fullName.split(' '); // ['']
+    bark() {
+        console.log('BARK!');
+    }
 
-//     this._name = name;
-//     this._surname = surname;
-//     // return this._name + ' ' + this._surname;
-// };
+    run() {
+        this.bark();
+        super.run();
+    }
+}
 
-// const adam = new Person('Adam', 'Smith');
-// const eva = { name: 'eva' };
+// ///
 
-// function sayHi(greeting, age) {
-//     console.log(greeting + ', ' + this.name + age);
-//     return greeting + ', ' + this.name;
-// }
-
-// sayHi('привет');
-// adam.sayHi = sayHi;
-
-// const response = sayHi.call(adam, 'привет');
-// const response = sayHi.apply(adam, ['привет', 22]);
-
-// const bindedToAdam = sayHi.bind(adam, 'Привет', 33);
-// const bindedToEva = sayHi.bind(eva);
-
-// ООП
-
-// 1) Наследование
-// 2) Полиморфизм
-// 3) Инкапсуляция
-
-// function Animal() {}
-
-// Animal.prototype.run = function () {
-//     console.log('I am running fast');
-// };
-
-// function Dog(name) {
+// function AnimalConstructor(name) {
 //     this.name = name;
 // }
 
-// Dog.prototype = new Animal(); //{}
-
-// Dog.prototype.bark = function () {
-//     console.log('BARK!!');
+// AnimalConstructor.prototype.run = function (speed) {
+//     console.log(this.name, ' is running');
 // };
 
-// Dog.prototype.run = function () {
-//     console.log('run like a dog');
+// function DogConstructor(name) {
+//     this.size = 'small';
+//     AnimalConstructor.call(this, name);
+// }
+
+// DogConstructor.prototype = new AnimalConstructor();
+
+// DogConstructor.prototype.run = function () {
+//     this.bark();
+//     AnimalConstructor.prototype.run.call(this);
 // };
 
-// function Cat() {}
+// DogConstructor.prototype.bark = function () {
+//     console.log('BARK!');
+// };
 
-// Cat.prototype = new Animal();
+// 1) {}
+// 2) DogConstructor -> {}
+//     {size: 'small'}
+// 3) AnimalConstructor -> {size: 'small'}
+//     {size: 'small', name: 'gkgasdf'}
 
-// const bob = new Dog('Bob');
-// const kitty = new Cat();
+class Group {}
 
-// большой/средний/маленький
+class Student {}
 
-// const SIZE_BIG = {
-//     price: 50,
-//     callories: 200
-// }
+const feGroup = new Group();
+const firstStudent = new Student('John Doe', [10, 102, 0]);
 
-// {
-//     price: 30,
-//     callories: 100
-// }
+feGroup.addStudent(firstStudent);
+feGroup.addStudent(new Student('awdead Doe', [10, 102, 0]));
+feGroup.addStudent(new Student('tgrtgwrtg Doe', [10, 102, 0]));
 
-// {
-//     price: 20,
-//     callories: 75
-// }
+feGroup.students; // [{},{},{}]
+feGroup.students = 'Ypu are hacked';
+feGroup.students; // [{},{},{}]
 
-// const TOPPING_MAYO = {
-//     price: 40,
-//     callories: 200
-// }
-
-// const burger = new Hamburger(SIZE_BIG)
-// const burger2 = new Hamburger(SIZE_BIG)
-// const burger4 = new Hamburger(SIZE_BIG)
-
-// burger.addToping(TOPPING_MAYO);
-// burger.addToping(TOPPING_MAYO);
-// burger.addToping(TOPPING_MAYO);
-// burger.addToping(TOPPING_KETCHUP);
-// burger.addToping(TOPPING_KETCHUP);
-// burger.addToping(TOPPING_KETCHUP);
-// burger.addToping(TOPPING_KETCHUP);
-
-// burger.getPrice() // 250
-// burger.getCallories() // 1050
+feGroup.getAverageMark(); // 20
