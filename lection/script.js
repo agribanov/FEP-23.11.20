@@ -1,91 +1,59 @@
-class AnimalClass {
-    SIZE_BIG = {
-        price: 35,
-    };
-
-    constructor(name, surname) {
-        this.#name = name;
-        this.#surname = surname;
-    }
-
-    get fullName() {
-        return this.#name + ' ' + this.#surname;
-    }
-
-    set fullName(value) {
-        const [name, surname] = value.split(' ');
-        if (name && surname) {
-            this.#name = name;
-            this.#surname = surname;
-        }
-    }
-
-    run(speed) {
-        console.log(this.name, ' is running');
-    }
+function createPromisedTimer(ms) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => resolve('fired in' + ms), ms);
+    });
 }
 
-class DogClass extends AnimalClass {
-    constructor(name) {
-        super(name);
-        this.size = 'small';
-    }
+const timer1 = createPromisedTimer(2000);
 
-    bark() {
-        console.log('BARK!');
-    }
+// timer1.then(() => {
+//     console.log('time1 fired');
+//     const timer2 = createPromisedTimer(1000);
 
-    run() {
-        this.bark();
-        super.run();
-    }
-}
+//     timer2.then(() => {
+//         console.log('timer2 fired');
+//         const timer3 = createPromisedTimer(1000);
 
-// ///
+//         timer3
+//             .then(() => {
+//                 console.log('timer3 fired');
+//             })
+//             .then(() => console.log('All timers fired'));
+//     });
+// });
 
-// function AnimalConstructor(name) {
-//     this.name = name;
+timer1
+    .then((msg) => {
+        console.log(msg);
+        return createPromisedTimer(1000);
+    })
+    .then((msg) => {
+        console.log(msg);
+        return createPromisedTimer(1000);
+    })
+    .then((msg) => console.log(msg))
+    .then(() => console.log('All timers fired'))
+    .catch(() => console.log('catched error'));
+
+// const promised = new Promise(function (resolve, reject) {
+
+// promised
+//     .then((msg) => console.log('resolved', msg))
+//     .catch((msg) => console.log('rejected', msg));
+
+// // class MyPromise{
+// //     constructor(fn){
+// //         fn(this.resolve, this.reject)
+//     }
+
+//     resolve(){
+//         this.callFunctionFromThen()
+//     }
+
+//     reject(){
+//         this.callFunctionFromCatch()
+//     }
+
+//     then(fn){}
+//     catch(fn){}
 // }
-
-// AnimalConstructor.prototype.run = function (speed) {
-//     console.log(this.name, ' is running');
-// };
-
-// function DogConstructor(name) {
-//     this.size = 'small';
-//     AnimalConstructor.call(this, name);
-// }
-
-// DogConstructor.prototype = new AnimalConstructor();
-
-// DogConstructor.prototype.run = function () {
-//     this.bark();
-//     AnimalConstructor.prototype.run.call(this);
-// };
-
-// DogConstructor.prototype.bark = function () {
-//     console.log('BARK!');
-// };
-
-// 1) {}
-// 2) DogConstructor -> {}
-//     {size: 'small'}
-// 3) AnimalConstructor -> {size: 'small'}
-//     {size: 'small', name: 'gkgasdf'}
-
-class Group {}
-
-class Student {}
-
-const feGroup = new Group();
-const firstStudent = new Student('John Doe', [10, 102, 0]);
-
-feGroup.addStudent(firstStudent);
-feGroup.addStudent(new Student('awdead Doe', [10, 102, 0]));
-feGroup.addStudent(new Student('tgrtgwrtg Doe', [10, 102, 0]));
-
-feGroup.students; // [{},{},{}]
-feGroup.students = 'Ypu are hacked';
-feGroup.students; // [{},{},{}]
-
-feGroup.getAverageMark(); // 20
