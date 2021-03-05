@@ -1,0 +1,24 @@
+{
+    "name": "contacts-jquery",
+    "version": "1.0.0",
+    "description": "",
+    "main": "app.js",
+    "scripts": {
+        "build": "gulp build",
+        "serve": "gulp serve",
+        "gulp": "gulp",
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "gulp": "^4.0.2",
+        "gulp-clean": "^0.4.0",
+        "gulp-cli": "^2.3.0",
+        "gulp-concat": "^2.6.1"
+    },
+    "dependencies": {
+        "jquery": "^3.5.1"
+    }
+}
